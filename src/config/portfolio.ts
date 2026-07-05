@@ -20,8 +20,8 @@ export const personal = {
   description:
     "I build cloud infrastructure, automate testing pipelines, and bridge development, testing, and operations to deliver high-quality software.",
   location: "India",
-  email: "srijayashankaran@example.com",
-  phone: "+91 00000 00000",
+  email: "jaishankar98421@gmail.com",
+  phone: "+91 9842139997",
   resumeUrl: "/resume.pdf",
 };
 
@@ -35,7 +35,7 @@ export type SocialLink = {
 export const socials: SocialLink[] = [
   { name: "GitHub", href: "https://github.com/", icon: Github },
   { name: "LinkedIn", href: "https://linkedin.com/", icon: Linkedin },
-  { name: "Email", href: "mailto:srijayashankaran@example.com", icon: Mail },
+  { name: "Email", href: "mailto:jaishankar98421@gmail.com", icon: Mail },
   { name: "LeetCode", href: "https://leetcode.com/", icon: Code2 },
   { name: "HackerRank", href: "https://hackerrank.com/", icon: Terminal },
   { name: "Instagram", href: "https://instagram.com/", icon: Instagram },

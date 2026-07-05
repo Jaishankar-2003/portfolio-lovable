@@ -22,7 +22,7 @@ var personal = {
 	tagline: "I'm a QA Automation Engineer and AWS Certified Solutions Architect focused on building reliable, scalable software systems.",
 	description: "I build cloud infrastructure, automate testing pipelines, and bridge development, testing, and operations to deliver high-quality software.",
 	location: "India",
-	email: "srijayashankaran@example.com",
+	email: "jaishankar98421@gmail.com",
 	phone: "+91 00000 00000",
 	resumeUrl: "/resume.pdf"
 };
@@ -39,7 +39,7 @@ var socials = [
 	},
 	{
 		name: "Email",
-		href: "mailto:srijayashankaran@example.com",
+		href: "mailto:jaishankar98421@gmail.com",
 		icon: Mail
 	},
 	{
