@@ -33,10 +33,10 @@ export type SocialLink = {
 
 // Only configured links appear in nav/footer
 export const socials: SocialLink[] = [
-  { name: "GitHub", href: "https://github.com/", icon: Github },
-  { name: "LinkedIn", href: "https://linkedin.com/", icon: Linkedin },
+  { name: "GitHub", href: "https://github.com/Jaishankar-2003/", icon: Github },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/r-sri-jaya-shankaran-b76329223", icon: Linkedin },
   { name: "Email", href: "mailto:jaishankar98421@gmail.com", icon: Mail },
-  { name: "LeetCode", href: "https://leetcode.com/", icon: Code2 },
+  { name: "LeetCode", href: "https://leetcode.com/u/sri_jaya_shankaran_003/", icon: Code2 },
   { name: "HackerRank", href: "https://hackerrank.com/", icon: Terminal },
   { name: "Instagram", href: "https://instagram.com/", icon: Instagram },
   { name: "X", href: "https://x.com/", icon: Twitter },
