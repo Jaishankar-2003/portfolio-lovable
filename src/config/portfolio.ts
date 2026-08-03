@@ -22,7 +22,7 @@ export const personal = {
   location: "India",
   email: "jaishankar98421@gmail.com",
   phone: "+91 9842139997",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "https://drive.google.com/file/d/1spNAB6iiulJtnGw6yBfYmzxTjTA9QT4_/view?usp=sharing",
 };
 
 export type SocialLink = {
