@@ -1,5 +1,6 @@
 import { a as __toESM, i as __toCommonJS, n as __esmMin, r as __exportAll } from "../_runtime.mjs";
-import { n as require_jsx_runtime, r as require_react } from "./react+tanstack__react-query.mjs";
+import { n as require_react } from "./@radix-ui/react-compose-refs+[...].mjs";
+import { n as require_jsx_runtime } from "./radix-ui__react-context+react.mjs";
 
 //#region node_modules/unenv/dist/runtime/_internal/utils.mjs
 /* @__NO_SIDE_EFFECTS__ */
@@ -8093,6 +8094,56 @@ function filterProps(props, isDom, forwardMotionProps) {
 	return filteredProps;
 }
 //#endregion
+//#region node_modules/framer-motion/dist/es/components/MotionConfig/index.mjs
+/**
+* `MotionConfig` is used to set configuration options for all children `motion` components.
+*
+* ```jsx
+* import { motion, MotionConfig } from "framer-motion"
+*
+* export function App() {
+*   return (
+*     <MotionConfig transition={{ type: "spring" }}>
+*       <motion.div animate={{ x: 100 }} />
+*     </MotionConfig>
+*   )
+* }
+* ```
+*
+* @public
+*/
+function MotionConfig({ children, isValidProp, ...config }) {
+	isValidProp && loadExternalIsValidProp(isValidProp);
+	/**
+	* Inherit props from any parent MotionConfig components
+	*/
+	const parentConfig = (0, import_react.useContext)(MotionConfigContext);
+	config = {
+		...parentConfig,
+		...config
+	};
+	config.transition = resolveTransition(config.transition, parentConfig.transition);
+	/**
+	* Don't allow isStatic to change between renders as it affects how many hooks
+	* motion components fire.
+	*/
+	config.isStatic = useConstant(() => config.isStatic);
+	/**
+	* Creating a new config context object will re-render every `motion` component
+	* every time it renders. So we only want to create a new one sparingly.
+	*/
+	const context = (0, import_react.useMemo)(() => config, [
+		JSON.stringify(config.transition),
+		config.transformPagePoint,
+		config.reducedMotion,
+		config.skipAnimations
+	]);
+	return (0, import_jsx_runtime.jsx)(MotionConfigContext.Provider, {
+		value: context,
+		children
+	});
+}
+//#endregion
 //#region node_modules/framer-motion/dist/es/context/MotionContext/index.mjs
 var MotionContext = /* @__PURE__ */ (0, import_react.createContext)({});
 //#endregion
@@ -10688,64 +10739,43 @@ function useSpring(source, options = {}) {
 	});
 }
 //#endregion
-//#region node_modules/framer-motion/dist/es/render/dom/viewport/index.mjs
-var thresholds = {
-	some: 0,
-	all: 1
-};
-function inView(elementOrSelector, onStart, { root, margin: rootMargin, amount = "some" } = {}) {
-	const elements = resolveElements(elementOrSelector);
-	const activeIntersections = /* @__PURE__ */ new WeakMap();
-	const onIntersectionChange = (entries) => {
-		entries.forEach((entry) => {
-			const onEnd = activeIntersections.get(entry.target);
-			/**
-			* If there's no change to the intersection, we don't need to
-			* do anything here.
-			*/
-			if (entry.isIntersecting === Boolean(onEnd)) return;
-			if (entry.isIntersecting) {
-				const newOnEnd = onStart(entry.target, entry);
-				if (typeof newOnEnd === "function") activeIntersections.set(entry.target, newOnEnd);
-				else observer.unobserve(entry.target);
-			} else if (typeof onEnd === "function") {
-				onEnd(entry);
-				activeIntersections.delete(entry.target);
-			}
-		});
-	};
-	const observer = new IntersectionObserver(onIntersectionChange, {
-		root,
-		rootMargin,
-		threshold: typeof amount === "number" ? amount : thresholds[amount]
-	});
-	elements.forEach((element) => observer.observe(element));
-	return () => observer.disconnect();
+//#region node_modules/framer-motion/dist/es/utils/reduced-motion/use-reduced-motion.mjs
+/**
+* A hook that returns `true` if we should be using reduced motion based on the current device's Reduced Motion setting.
+*
+* This can be used to implement changes to your UI based on Reduced Motion. For instance, replacing motion-sickness inducing
+* `x`/`y` animations with `opacity`, disabling the autoplay of background videos, or turning off parallax motion.
+*
+* It will actively respond to changes and re-render your components with the latest setting.
+*
+* ```jsx
+* export function Sidebar({ isOpen }) {
+*   const shouldReduceMotion = useReducedMotion()
+*   const closedX = shouldReduceMotion ? 0 : "-100%"
+*
+*   return (
+*     <motion.div animate={{
+*       opacity: isOpen ? 1 : 0,
+*       x: isOpen ? 0 : closedX
+*     }} />
+*   )
+* }
+* ```
+*
+* @return boolean
+*
+* @public
+*/
+function useReducedMotion() {
+	/**
+	* Lazy initialisation of prefersReducedMotion
+	*/
+	!hasReducedMotionListener.current && initPrefersReducedMotion();
+	const [shouldReduceMotion] = (0, import_react.useState)(prefersReducedMotion.current);
+	/**
+	* TODO See if people miss automatically updating shouldReduceMotion setting
+	*/
+	return shouldReduceMotion;
 }
 //#endregion
-//#region node_modules/framer-motion/dist/es/utils/use-in-view.mjs
-function useInView(ref, { root, margin, amount, once = false, initial = false } = {}) {
-	const [isInView, setInView] = (0, import_react.useState)(initial);
-	(0, import_react.useEffect)(() => {
-		if (!ref.current || once && isInView) return;
-		const onEnter = () => {
-			setInView(true);
-			return once ? void 0 : () => setInView(false);
-		};
-		const options = {
-			root: root && root.current || void 0,
-			margin,
-			amount
-		};
-		return inView(ref.current, onEnter, options);
-	}, [
-		root,
-		ref,
-		margin,
-		once,
-		amount
-	]);
-	return isInView;
-}
-//#endregion
-export { motion as a, useScroll as i, useSpring as n, AnimatePresence as o, useMotionValue as r, useInView as t };
+export { MotionConfig as a, motion as i, useSpring as n, AnimatePresence as o, useScroll as r, useReducedMotion as t };

@@ -1,11 +1,11 @@
 {
-  "compatibility_date": "2026-07-05",
+  "compatibility_date": "2026-11-11",
   "main": "index.mjs",
   "assets": {
     "binding": "ASSETS",
     "directory": "../public"
   },
-  "name": "tanstack-start-ts",
+  "name": "jaishankar-2003-portfolio-lovable",
   "compatibility_flags": [
     "nodejs_compat"
   ],

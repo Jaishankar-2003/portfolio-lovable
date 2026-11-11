@@ -15,33 +15,40 @@ globalThis.__nitro_vite_envs__ = services;
 //#endregion
 //#region #nitro/virtual/public-assets-data
 var public_assets_data_default = {
-	"/assets/routes-B005-sAE.js": {
-		"type": "text/javascript; charset=utf-8",
-		"etag": "\"35659-9FwZdZomNHvv92JPcOfAyxvUIXA\"",
-		"mtime": "2026-07-05T16:34:35.222Z",
-		"size": 218713,
-		"path": "../public/assets/routes-B005-sAE.js"
-	},
-	"/assets/styles-66KQe7JF.css": {
-		"type": "text/css; charset=utf-8",
-		"etag": "\"18307-0zZrPPggLLuyL3FXIDTzVT1OvN8\"",
-		"mtime": "2026-07-05T16:34:35.222Z",
-		"size": 99079,
-		"path": "../public/assets/styles-66KQe7JF.css"
-	},
-	"/assets/index-DIW4Lkbj.js": {
-		"type": "text/javascript; charset=utf-8",
-		"etag": "\"548e3-8S70Mg9tgSqWAgzorM9GYXS4ftk\"",
-		"mtime": "2026-07-05T16:34:35.221Z",
-		"size": 346339,
-		"path": "../public/assets/index-DIW4Lkbj.js"
-	},
 	"/favicon.ico": {
 		"type": "image/vnd.microsoft.icon",
 		"etag": "\"4f95-3RXc3p2mhEAs1WBwaIvE0Y0uu0Y\"",
-		"mtime": "2026-07-05T16:34:35.898Z",
+		"mtime": "2026-11-11T07:36:33.020Z",
 		"size": 20373,
 		"path": "../public/favicon.ico"
+	},
+	"/assets/index-DRWqMB_Q.js": {
+		"type": "text/javascript; charset=utf-8",
+		"etag": "\"54f26-O7wHWwc1/nFIepYhqgABk5SiYGs\"",
+		"mtime": "2026-11-11T07:36:32.535Z",
+		"size": 347942,
+		"path": "../public/assets/index-DRWqMB_Q.js"
+	},
+	"/assets/styles-DEcO2qrn.css": {
+		"type": "text/css; charset=utf-8",
+		"etag": "\"168bf-VlZH3kpIug6zy8Foks49LgaYOlU\"",
+		"mtime": "2026-11-11T07:36:32.537Z",
+		"size": 92351,
+		"path": "../public/assets/styles-DEcO2qrn.css"
+	},
+	"/assets/routes-kxohfOZf.js": {
+		"type": "text/javascript; charset=utf-8",
+		"etag": "\"4498d-6HUudNYDSe9T9Km2Bydm7h6m4tY\"",
+		"mtime": "2026-11-11T07:36:32.535Z",
+		"size": 280973,
+		"path": "../public/assets/routes-kxohfOZf.js"
+	},
+	"/certificates/icfix-chip-level.jpg": {
+		"type": "image/jpeg",
+		"etag": "\"2645e-VTux8BghrG5vLGnYFP0z16F2fB0\"",
+		"mtime": "2026-11-11T07:36:33.019Z",
+		"size": 156766,
+		"path": "../public/certificates/icfix-chip-level.jpg"
 	}
 };
 //#endregion

@@ -1,300 +1,576 @@
 import {
-  Github, Linkedin, Mail, Instagram, Twitter, Code2, Terminal,
-  BookOpen, PenTool, Cloud, Cpu, TestTube2, Network, Wrench,
+  Activity,
+  Bot,
+  Box,
+  Cloud,
+  Code2,
+  Cpu,
+  GitBranch,
+  Github,
+  Layers,
+  Linkedin,
+  Mail,
+  Network,
+  ShieldCheck,
+  Terminal,
+  TestTube2,
+  Briefcase,
+  Wrench,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export const personal = {
   name: "Sri Jaya Shankaran R",
-  shortName: "SJ",
-  roles: [
-    "QA Automation Engineer",
-    "AWS Certified Solutions Architect",
-    "DevOps Enthusiast",
-    "Cloud Engineer",
-    "Platform Engineering Learner",
-    "Testing Everything. Building Reliable Systems.",
-  ],
-  tagline:
-    "I'm a QA Automation Engineer and AWS Certified Solutions Architect focused on building reliable, scalable software systems.",
-  description:
-    "I build cloud infrastructure, automate testing pipelines, and bridge development, testing, and operations to deliver high-quality software.",
-  location: "India",
+  initials: "SJS",
+  role: "Junior DevOps / Cloud Engineer",
+  specialization: "AWS · CI/CD · Cloud & IT Systems · Hardware Engineering",
+  headline:
+    "Building reliable deployments, automating workflows, and engineering systems from silicon to cloud.",
+  summary:
+    "I'm an AWS Certified Solutions Architect – Associate with 1+ year of professional experience in software quality engineering and automation, complemented by certified expertise in laptop chip-level diagnostics and IT support. I enjoy working across the full spectrum—from motherboard troubleshooting, computer hardware servicing, and IT systems to containerized cloud architectures, Terraform, and automated CI/CD delivery.",
+  availability: "Open to DevOps, Cloud, IT Support & Systems Roles",
+  location: "Madurai & Chennai, India",
   email: "jaishankar98421@gmail.com",
   phone: "+91 9842139997",
-  resumeUrl: "https://drive.google.com/file/d/1spNAB6iiulJtnGw6yBfYmzxTjTA9QT4_/view?usp=sharing",
+  phoneHref: "tel:+919842139997",
+  portfolioUrl: "https://jaishankar.vercel.app/",
+  resumeUrl:
+    "https://drive.google.com/file/d/1spNAB6iiulJtnGw6yBfYmzxTjTA9QT4_/view?usp=sharing",
 };
 
 export type SocialLink = {
   name: string;
   href: string;
+  label: string;
   icon: LucideIcon;
 };
 
-// Only configured links appear in nav/footer
 export const socials: SocialLink[] = [
-  { name: "GitHub", href: "https://github.com/Jaishankar-2003/", icon: Github },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/r-sri-jaya-shankaran-b76329223", icon: Linkedin },
-  { name: "Email", href: "mailto:jaishankar98421@gmail.com", icon: Mail },
-  { name: "LeetCode", href: "https://leetcode.com/u/sri_jaya_shankaran_003/", icon: Code2 },
-  { name: "HackerRank", href: "https://hackerrank.com/", icon: Terminal },
-  { name: "Instagram", href: "https://instagram.com/", icon: Instagram },
-  { name: "X", href: "https://x.com/", icon: Twitter },
-  { name: "Dev.to", href: "https://dev.to/", icon: PenTool },
-  { name: "Medium", href: "https://medium.com/", icon: BookOpen },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/r-sri-jaya-shankaran-b76329223/",
+    label: "LinkedIn Profile",
+    icon: Linkedin,
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/Jaishankar-2003",
+    label: "GitHub Profile",
+    icon: Github,
+  },
+  {
+    name: "Upwork",
+    href: "https://www.upwork.com/freelancers/~0139f092ec94ed11a0?mp_source=share",
+    label: "Upwork Profile",
+    icon: Briefcase,
+  },
+  {
+    name: "Email",
+    href: "mailto:jaishankar98421@gmail.com",
+    label: "Send Email",
+    icon: Mail,
+  },
 ];
 
-export const stats = [
-  { label: "Projects", value: 12, suffix: "+" },
-  { label: "Certifications", value: 5, suffix: "" },
-  { label: "Technologies", value: 30, suffix: "+" },
-  { label: "Years Experience", value: 3, suffix: "+" },
-];
-
-export type Skill = { name: string; level: number; category: string };
-export const skillCategories = ["Cloud", "DevOps", "Testing", "Languages", "Hardware"] as const;
-export type SkillCategory = (typeof skillCategories)[number];
-
-export const skills: Skill[] = [
-  // Cloud
-  { name: "AWS", level: 92, category: "Cloud" },
-  { name: "EC2", level: 90, category: "Cloud" },
-  { name: "IAM", level: 88, category: "Cloud" },
-  { name: "Lambda", level: 85, category: "Cloud" },
-  { name: "API Gateway", level: 82, category: "Cloud" },
-  { name: "VPC", level: 84, category: "Cloud" },
-  { name: "Route53", level: 78, category: "Cloud" },
-  { name: "S3", level: 92, category: "Cloud" },
-  { name: "CloudFront", level: 80, category: "Cloud" },
-  { name: "RDS", level: 82, category: "Cloud" },
-  { name: "DynamoDB", level: 78, category: "Cloud" },
-  { name: "CloudFormation", level: 76, category: "Cloud" },
-  // DevOps
-  { name: "Linux", level: 90, category: "DevOps" },
-  { name: "Docker", level: 88, category: "DevOps" },
-  { name: "Kubernetes", level: 80, category: "DevOps" },
-  { name: "Terraform", level: 78, category: "DevOps" },
-  { name: "Git", level: 92, category: "DevOps" },
-  { name: "GitHub", level: 92, category: "DevOps" },
-  { name: "Jenkins", level: 85, category: "DevOps" },
-  { name: "Maven", level: 78, category: "DevOps" },
-  { name: "Networking", level: 84, category: "DevOps" },
-  // Testing
-  { name: "Playwright", level: 92, category: "Testing" },
-  { name: "Selenium", level: 90, category: "Testing" },
-  { name: "Postman", level: 90, category: "Testing" },
-  { name: "REST API Testing", level: 88, category: "Testing" },
-  { name: "JUnit", level: 82, category: "Testing" },
-  { name: "TestNG", level: 84, category: "Testing" },
-  { name: "Agile / Scrum", level: 85, category: "Testing" },
-  // Languages
-  { name: "Java", level: 88, category: "Languages" },
-  { name: "Python", level: 86, category: "Languages" },
-  { name: "FastAPI", level: 78, category: "Languages" },
-  // Hardware
-  { name: "Chip-Level Repair", level: 90, category: "Hardware" },
-  { name: "Windows", level: 88, category: "Hardware" },
-  { name: "Hardware Troubleshooting", level: 92, category: "Hardware" },
-];
-
-export const categoryIcons: Record<SkillCategory, LucideIcon> = {
-  Cloud, DevOps: Wrench, Testing: TestTube2, Languages: Cpu, Hardware: Network,
+export const aboutContent = {
+  paragraphs: [
+    "I'm a technology professional with 1+ year of experience in Software Development in Test (SDET), expanding into DevOps Engineering and AWS Cloud Infrastructure, backed by a strong foundation in physical hardware engineering and IT systems.",
+    "My hands-on background in automation testing, defect analysis, and root-cause troubleshooting gives me a reliability-first engineering mindset. When systems fail, I know how to investigate logs, network packets, APIs, and container metrics.",
+    "Beyond software, I hold a deep passion for computer hardware. As an ISO 9001:2015 certified laptop chip-level technician, I diagnose motherboards, power rails, display/charging circuits, and BIOS configurations at the component level using multimeters and diagnostic tools.",
+    "This dual fluency—from physical silicon and IT support up to AWS infrastructure, Docker, and CI/CD automation—allows me to understand application performance and infrastructure reliability end-to-end.",
+  ],
+  journey: [
+    {
+      step: "01",
+      title: "Hardware Engineering & IT Support",
+      detail:
+        "Certified in laptop chip-level diagnostics (ICFix Services ICFA/LAP/2278). Hands-on motherboard troubleshooting, power rails, component repair, OS/driver maintenance, and L1 networking.",
+      icon: Cpu,
+    },
+    {
+      step: "02",
+      title: "Software Testing & Automation",
+      detail:
+        "Playwright + TypeScript, Selenium, REST API validation, and automated smoke/regression suites across 30+ web applications.",
+      icon: TestTube2,
+    },
+    {
+      step: "03",
+      title: "Quality Engineering & Root-Cause Analysis",
+      detail:
+        "Systematic failure investigation using browser traces, logs, API responses, and JMeter/k6 concurrent-user load behavior.",
+      icon: Activity,
+    },
+    {
+      step: "04",
+      title: "AWS Cloud & Infrastructure",
+      detail:
+        "AWS Certified Solutions Architect – Associate. VPC networking, EC2, ALB, IAM security, S3, CloudFront, Route 53, and high availability.",
+      icon: Cloud,
+    },
+    {
+      step: "05",
+      title: "DevOps & CI/CD Automation",
+      detail:
+        "Multi-container deployments with Docker & Docker Compose, declarative Jenkins pipelines, Terraform IaC, and Kubernetes fundamentals.",
+      icon: GitBranch,
+    },
+  ],
 };
 
-export type Experience = {
-  role: string;
-  company: string;
-  period: string;
-  location: string;
-  bullets: string[];
+export type SkillCategoryGroup = {
+  id: string;
+  title: string;
+  filterGroup:
+    "cloud-iac" | "containers-cicd" | "linux-ops" | "hardware-it" | "qa-ai";
+  familiarity:
+    | "Production Experience"
+    | "Certified & Hands-On"
+    | "Hands-on Deployment"
+    | "Hands-on & Lab"
+    | "Foundational & Lab";
   icon: LucideIcon;
+  items: { name: string; note?: string }[];
 };
 
-export const experiences: Experience[] = [
+export const skillFilterTabs = [
+  { id: "all", label: "All Categories" },
+  { id: "cloud-iac", label: "Cloud & IaC" },
+  { id: "containers-cicd", label: "Containers & CI/CD" },
+  { id: "linux-ops", label: "Linux & Ops" },
+  { id: "hardware-it", label: "Hardware & IT Support" },
+  { id: "qa-ai", label: "QA & AI Testing" },
+] as const;
+
+export const skillGroups: SkillCategoryGroup[] = [
   {
-    role: "Software Test Engineer Intern",
-    company: "QSpiders Test Yantra",
-    period: "2024 — Present",
-    location: "India",
-    icon: TestTube2,
-    bullets: [
-      "Built automation frameworks using Playwright and Selenium.",
-      "Designed API testing suites with Postman and REST Assured.",
-      "Integrated tests into CI/CD pipelines using Jenkins and GitHub Actions.",
+    id: "aws-cloud",
+    title: "AWS & Cloud",
+    filterGroup: "cloud-iac",
+    familiarity: "Hands-on & Lab",
+    icon: Cloud,
+    items: [
+      { name: "EC2", note: "Hands-on" },
+      { name: "VPC" },
+      { name: "IAM" },
+      { name: "S3" },
+      { name: "Application Load Balancer", note: "Hands-on" },
+      { name: "Auto Scaling" },
+      { name: "Route 53" },
+      { name: "CloudFront" },
+      { name: "CloudWatch" },
+      { name: "ECR" },
+      { name: "ECS" },
+      { name: "EKS" },
+      { name: "RDS" },
+      { name: "Lambda" },
+      { name: "CloudTrail" },
     ],
   },
   {
-    role: "Hardware Engineer",
-    company: "Views Computers",
-    period: "2021 — 2023",
-    location: "India",
+    id: "containers",
+    title: "Containers & Orchestration",
+    filterGroup: "containers-cicd",
+    familiarity: "Hands-on & Lab",
+    icon: Box,
+    items: [
+      { name: "Docker", note: "Hands-on" },
+      { name: "Docker Compose", note: "Hands-on" },
+      { name: "Kubernetes", note: "Foundational" },
+      { name: "Helm", note: "Foundational" },
+      { name: "eksctl", note: "Foundational" },
+    ],
+  },
+  {
+    id: "cicd",
+    title: "CI/CD & Automation",
+    filterGroup: "containers-cicd",
+    familiarity: "Hands-on & Lab",
+    icon: GitBranch,
+    items: [
+      { name: "Jenkins" },
+      { name: "GitHub Actions" },
+      { name: "GitLab CI/CD" },
+      { name: "Git", note: "Hands-on" },
+      { name: "Maven" },
+    ],
+  },
+  {
+    id: "iac",
+    title: "Infrastructure as Code",
+    filterGroup: "cloud-iac",
+    familiarity: "Foundational & Lab",
+    icon: Layers,
+    items: [{ name: "Terraform", note: "Lab & Learning" }],
+  },
+  {
+    id: "linux-scripting",
+    title: "Linux & Scripting",
+    filterGroup: "linux-ops",
+    familiarity: "Hands-on & Lab",
+    icon: Terminal,
+    items: [
+      { name: "Linux", note: "Hands-on" },
+      { name: "Bash" },
+      { name: "Python" },
+    ],
+  },
+  {
+    id: "networking",
+    title: "Networking",
+    filterGroup: "linux-ops",
+    familiarity: "Hands-on & Lab",
+    icon: Network,
+    items: [{ name: "SSH" }, { name: "DNS" }, { name: "TCP/IP" }],
+  },
+  {
+    id: "observability",
+    title: "Monitoring & Observability",
+    filterGroup: "linux-ops",
+    familiarity: "Foundational & Lab",
+    icon: Activity,
+    items: [
+      { name: "AWS CloudWatch" },
+      { name: "Prometheus", note: "Foundational" },
+      { name: "Grafana", note: "Foundational" },
+    ],
+  },
+  {
+    id: "hardware-support",
+    title: "Hardware, Chip-Level & IT Support",
+    filterGroup: "hardware-it",
+    familiarity: "Certified & Hands-On",
     icon: Cpu,
-    bullets: [
-      "Performed chip-level diagnostics and repair for laptops and desktops.",
-      "Configured networks, servers, and Windows environments for SMB clients.",
-      "Founded and operated a small computer service business.",
+    items: [
+      { name: "Laptop Chip-Level Diagnostics", note: "Certified" },
+      { name: "Motherboard & Power Circuits", note: "Hands-on" },
+      { name: "Multimeter & Continuity Testing", note: "Hands-on" },
+      { name: "Component Replacement (RAM/SSD/Display)", note: "Hands-on" },
+      { name: "OS & Driver Installation / Imaging", note: "Hands-on" },
+      { name: "L1/L2 IT Support & Troubleshooting", note: "Hands-on" },
+      { name: "BIOS & Firmware Configuration" },
+      { name: "LAN, Router & TCP/IP Support" },
+      { name: "No-Power / No-Display Investigation" },
+      { name: "System Maintenance & Thermal Pasting" },
+    ],
+  },
+  {
+    id: "qa-automation",
+    title: "QA & Automation",
+    filterGroup: "qa-ai",
+    familiarity: "Production Experience",
+    icon: TestTube2,
+    items: [
+      { name: "Playwright", note: "1+ Yr Prod" },
+      { name: "TypeScript", note: "1+ Yr Prod" },
+      { name: "Selenium" },
+      { name: "Java" },
+      { name: "REST Assured" },
+      { name: "Postman" },
+      { name: "JMeter" },
+      { name: "k6" },
+    ],
+  },
+  {
+    id: "ai-dev",
+    title: "AI-Assisted Development",
+    filterGroup: "qa-ai",
+    familiarity: "Production Experience",
+    icon: Bot,
+    items: [
+      { name: "AI-assisted coding" },
+      { name: "AI-powered debugging" },
+      { name: "RAG testing" },
+      { name: "Promptfoo" },
+      { name: "RAGAS" },
     ],
   },
 ];
 
-export type Project = {
+export type FeaturedProject = {
+  id: string;
   title: string;
+  status: "Deployed / Hands-On" | "In Progress" | "Learning Project";
+  featured?: boolean;
+  diagramType: "jspcs-aws" | "cicd-pipeline" | "static-cdn";
   description: string;
-  tags: string[];
-  github?: string;
-  demo?: string;
-  caseStudy?: string;
-  gradient: string;
+  contribution: string;
+  technologies: string[];
+  highlights: string[];
+  githubUrl?: string;
+  liveUrl?: string;
 };
 
-export const projects: Project[] = [
+export const featuredProjects: FeaturedProject[] = [
   {
-    title: "Endocrine Disease Detection",
+    id: "jspcs-pos",
+    title: "JSPCS POS – Multi-Tier AWS Application Deployment",
+    status: "Deployed / Hands-On",
+    featured: true,
+    diagramType: "jspcs-aws",
     description:
-      "Image processing pipeline for early detection of endocrine diseases using classical CV and ML techniques.",
-    tags: ["Python", "OpenCV", "ML", "Research"],
-    github: "https://github.com/", caseStudy: "#",
-    gradient: "from-blue-500/30 to-cyan-500/30",
+      "Deployed a multi-tier Point-of-Sale application on AWS EC2 behind an Application Load Balancer, running frontend, backend, and database services in a containerized environment.",
+    contribution:
+      "Owned infrastructure setup on EC2, ALB HTTP routing configuration to port 5173, Docker Compose orchestration for FastAPI and PostgreSQL, and live service/log troubleshooting.",
+    technologies: [
+      "AWS EC2",
+      "Application Load Balancer",
+      "Docker Compose",
+      "React",
+      "Vite",
+      "FastAPI",
+      "PostgreSQL",
+      "Linux",
+    ],
+    highlights: [
+      "Deployed application infrastructure on AWS EC2 behind an Application Load Balancer.",
+      "Configured HTTP traffic routing from the ALB to the React/Vite frontend on port 5173.",
+      "Ran FastAPI backend and PostgreSQL database services using Docker Compose.",
+      "Configured application ports and inter-service container connectivity.",
+      "Investigated container status, service logs, and deployment issues during setup.",
+      "Validated application availability and health via HTTP checks and container inspection.",
+    ],
+    githubUrl: "https://github.com/Jaishankar-2003",
   },
   {
-    title: "Web Traffic Analysis",
+    id: "automated-cicd",
+    title: "Automated CI/CD Pipeline",
+    status: "In Progress",
+    diagramType: "cicd-pipeline",
     description:
-      "Analytics platform processing web traffic logs to uncover behavior patterns and anomalies.",
-    tags: ["Python", "Pandas", "AWS", "Dashboards"],
-    github: "https://github.com/", demo: "#",
-    gradient: "from-cyan-500/30 to-emerald-500/30",
+      "Hands-on CI/CD and infrastructure automation project focused on automating application builds, container image publishing, and deployment workflows.",
+    contribution:
+      "Building declarative Jenkinsfile stages, Docker image publishing to Amazon ECR, and Terraform provisioning exercises as part of DevOps workflow practice.",
+    technologies: [
+      "Jenkins",
+      "GitHub",
+      "Docker",
+      "Amazon ECR",
+      "EC2",
+      "Terraform",
+      "CloudWatch",
+    ],
+    highlights: [
+      "Source-code integration with GitHub and Jenkins declarative pipeline (Jenkinsfile).",
+      "Automated build and validation stages with Docker image creation.",
+      "Container image publishing workflow targeting Amazon ECR.",
+      "EC2 deployment workflow and Terraform infrastructure provisioning exercises.",
+      "Deployment verification and CloudWatch logging/monitoring exploration.",
+    ],
+    githubUrl: "https://github.com/Jaishankar-2003",
   },
   {
-    title: "DEX QA",
+    id: "aws-static-hosting",
+    title: "AWS Static Website Hosting & Delivery",
+    status: "Learning Project",
+    diagramType: "static-cdn",
     description:
-      "End-to-end QA suite for a decentralized exchange covering UI, contract, and API layers.",
-    tags: ["Playwright", "REST", "CI/CD"],
-    github: "https://github.com/",
-    gradient: "from-emerald-500/30 to-blue-500/30",
-  },
-  {
-    title: "JSPCS",
-    description:
-      "Java-based service platform with modular architecture and JUnit-driven test coverage.",
-    tags: ["Java", "Maven", "JUnit"],
-    github: "https://github.com/", caseStudy: "#",
-    gradient: "from-blue-500/30 to-purple-500/30",
-  },
-  {
-    title: "AWS Serverless Deployment",
-    description:
-      "Serverless reference architecture using Lambda, API Gateway, DynamoDB and CloudFormation.",
-    tags: ["AWS", "Lambda", "CloudFormation"],
-    github: "https://github.com/", demo: "#",
-    gradient: "from-orange-500/30 to-blue-500/30",
-  },
-  {
-    title: "CI/CD Automation",
-    description:
-      "Opinionated Jenkins + GitHub Actions pipeline templates for build, test and deploy stages.",
-    tags: ["Jenkins", "GitHub Actions", "Docker"],
-    github: "https://github.com/",
-    gradient: "from-cyan-500/30 to-blue-500/30",
-  },
-  {
-    title: "Playwright Automation Framework",
-    description:
-      "Scalable Playwright framework with fixtures, POM, parallel execution and HTML reporting.",
-    tags: ["Playwright", "TypeScript", "POM"],
-    github: "https://github.com/", demo: "#",
-    gradient: "from-emerald-500/30 to-cyan-500/30",
-  },
-  {
-    title: "Dockerized Test Framework",
-    description:
-      "Containerized Selenium Grid + test runner setup for repeatable execution across environments.",
-    tags: ["Docker", "Selenium Grid", "Java"],
-    github: "https://github.com/",
-    gradient: "from-blue-500/30 to-emerald-500/30",
-  },
-  {
-    title: "API Automation Suite",
-    description:
-      "Comprehensive REST API test suite with data-driven cases and CI-integrated reports.",
-    tags: ["Postman", "REST Assured", "Newman"],
-    github: "https://github.com/", demo: "#",
-    gradient: "from-purple-500/30 to-cyan-500/30",
+      "Exploring static website hosting, content delivery, HTTPS configuration, and automated frontend deployment using AWS services.",
+    contribution:
+      "Practising S3 static origin setup, CloudFront distribution behavior, custom-domain DNS routing, and Git-triggered frontend delivery.",
+    technologies: ["AWS S3", "CloudFront", "Route 53", "ACM", "GitHub"],
+    highlights: [
+      "Static website hosting on Amazon S3 (and AWS Amplify exploration).",
+      "CloudFront distribution configuration for edge content delivery.",
+      "Custom-domain configuration, DNS routing with Route 53, and ACM HTTPS concepts.",
+      "Git-based deployment workflow and delivery verification after updates.",
+    ],
+    githubUrl: "https://github.com/Jaishankar-2003",
   },
 ];
 
-export type Certification = {
+export type StaticSiteItem = {
   name: string;
-  org: string;
-  date: string;
-  credentialUrl?: string;
+  domain: string;
+  url: string;
+  note: string;
 };
 
-export const certifications: Certification[] = [
-  { name: "AWS Certified Solutions Architect – Associate", org: "Amazon Web Services", date: "2024", credentialUrl: "#" },
-  { name: "Postman Student Expert", org: "Postman", date: "2024", credentialUrl: "#" },
-  { name: "CompTIA A+", org: "CompTIA", date: "2022", credentialUrl: "#" },
-  { name: "Chip-Level Hardware Engineer", org: "Views Institute", date: "2021", credentialUrl: "#" },
-  { name: "Software Test Engineer", org: "QSpiders", date: "2024", credentialUrl: "#" },
+export const liveStaticSites: StaticSiteItem[] = [
+  {
+    name: "DexQA",
+    domain: "dexqa.vercel.app",
+    url: "https://dexqa.vercel.app/",
+    note: "Static web application deployed on Vercel",
+  },
+  {
+    name: "JSPCS",
+    domain: "www.jspcs.online",
+    url: "https://www.jspcs.online/",
+    note: "Live production static site with custom domain",
+  },
+  {
+    name: "ShellCoders",
+    domain: "shellcoders.vercel.app",
+    url: "https://shellcoders.vercel.app/",
+    note: "Static web application deployed on Vercel",
+  },
 ];
 
-export const achievements = [
-  "AWS Certified Solutions Architect",
-  "Postman Student Expert",
-  "Founded a Computer Service Business",
-  "Built end-to-end QA Automation frameworks",
-  "Shipped multiple AWS Cloud projects",
-  "Deep Networking & Hardware Engineering background",
-];
-
-export type BlogPost = {
+export type AutomationProject = {
   title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  href: string;
+  stack: string;
+  summary: string;
+  focus: string;
 };
 
-export const blogPosts: BlogPost[] = [
+export const automationProjects: AutomationProject[] = [
   {
-    title: "Scaling Playwright Test Suites for Real Production Apps",
-    excerpt: "Fixtures, sharding, and reporting patterns that keep large Playwright suites fast and maintainable.",
-    date: "May 2025", readTime: "8 min read", href: "#",
+    title: "World Vision – Full Regression Automation",
+    stack: "Playwright · TypeScript",
+    summary:
+      "Automated end-to-end regression flows with maintainable Page Object Model components, assertions, and trace/screenshot failure diagnostics.",
+    focus: "Release Regression",
   },
   {
-    title: "From QA to Cloud: My AWS Solutions Architect Journey",
-    excerpt: "How I approached the SAA-C03 exam while working full-time in QA automation.",
-    date: "Apr 2025", readTime: "6 min read", href: "#",
+    title: "Simbli.ai – AI Social Media Platform Automation",
+    stack: "Playwright · TypeScript",
+    summary:
+      "Built UI automation coverage across core user workflows, data flows, and AI-assisted features using reusable fixtures and structured suites.",
+    focus: "E2E & AI Feature QA",
   },
   {
-    title: "Dockerizing a Selenium Grid the Right Way",
-    excerpt: "A pragmatic setup for containerized browser testing on any CI runner.",
-    date: "Mar 2025", readTime: "7 min read", href: "#",
+    title: "30+ Website Daily Smoke Automation",
+    stack: "Playwright · TypeScript",
+    summary:
+      "Created shared validation patterns and reusable Playwright components to verify critical paths, forms, and page availability across 30+ web applications.",
+    focus: "Multi-Site Smoke Checks",
   },
   {
-    title: "REST API Testing: A Postman + Newman Playbook",
-    excerpt: "Turn manual Postman collections into a first-class regression suite.",
-    date: "Feb 2025", readTime: "5 min read", href: "#",
+    title: "HappierMe & Sustally – RAG Chatbot Testing",
+    stack: "Playwright API · RAGAS · Promptfoo",
+    summary:
+      "Evaluated AI chatbot retrieval quality, context grounding, and response consistency at scale using API-driven question suites and evaluation frameworks.",
+    focus: "AI / RAG Evaluation",
   },
   {
-    title: "Kubernetes for QA Engineers",
-    excerpt: "The exact k8s vocabulary QA engineers need to test cloud-native apps confidently.",
-    date: "Jan 2025", readTime: "9 min read", href: "#",
+    title: "Server Performance & Downtime Investigation",
+    stack: "Apache JMeter",
+    summary:
+      "Executed graduated concurrent-user load tests to isolate response degradation, error rates, and constrained server thresholds with reproducible metrics.",
+    focus: "Load & Root-Cause Analysis",
   },
 ];
 
-export const techStack = [
-  "AWS", "Docker", "Kubernetes", "Linux", "Python", "Java",
-  "Playwright", "Selenium", "GitHub", "Git", "Jenkins", "FastAPI",
-  "Postman", "MySQL", "Redis", "NGINX", "Terraform",
+export const professionalExperience = {
+  role: "Automation Test Engineer / SDET",
+  company: "Dot Com Infoway",
+  location: "Madurai",
+  period: "October 2025 – Present",
+  responsibilities: [
+    "Develop and maintain Playwright + TypeScript automation.",
+    "Contribute to testing across 30+ web applications.",
+    "Perform UI, API, regression, and smoke testing.",
+    "Investigate defects using logs, browser traces, screenshots, and API responses.",
+    "Execute performance testing using JMeter and k6.",
+    "Validate AI/RAG application responses and retrieval quality.",
+    "Collaborate with development teams to investigate defects and validate fixes.",
+  ],
+};
+
+export const trainings = [
+  {
+    title: "AWS & DevOps Training",
+    organization: "Techpanda",
+    location: "Chennai",
+    period: "2026",
+    badge: "Cloud & DevOps",
+    icon: Cloud,
+    topics: [
+      "AWS infrastructure (EC2, VPC, IAM, security groups, load balancing)",
+      "Linux administration and Bash scripting fundamentals",
+      "Docker and Docker Compose multi-container deployments",
+      "Jenkins and CI/CD pipeline workflows",
+      "Terraform Infrastructure as Code fundamentals",
+      "Kubernetes fundamentals (Pods, Deployments, Services, ConfigMaps, Secrets)",
+      "CloudWatch monitoring, logs, metrics, and deployment troubleshooting",
+    ],
+  },
+  {
+    title: "Laptop Chip-Level Service Engineering",
+    organization: "ICFix Services (ISO 9001:2015 Certified)",
+    location: "Chennai",
+    period: "March 2025",
+    badge: "Hardware & IT Support",
+    serialNo: "ICFA/LAP/2278",
+    icon: Cpu,
+    topics: [
+      "Motherboard architecture, power & charging circuits, and BIOS fundamentals",
+      "Chip-level troubleshooting using multimeters for voltage and continuity testing",
+      "Diagnosing no-power, no-display, charging, boot failure, and short-circuits",
+      "Hardware component replacement (RAM, HDD/SSD, display, keyboards, thermal pasting)",
+      "OS & driver installation, system configuration, and post-repair validation",
+      "L1 networking diagnostics: IP configuration, LAN checks, router setup, TCP/IP, and DNS",
+    ],
+  },
+  {
+    title: "Computer Repair & IT Support Services",
+    organization: "Views Computers",
+    location: "Madurai",
+    period: "Practical Experience",
+    badge: "Hardware Passion",
+    icon: Wrench,
+    topics: [
+      "Hands-on desktop and laptop diagnostics, hardware assembly, and repair",
+      "Operating system, driver, and application troubleshooting",
+      "Preventive maintenance, thermal management, and hardware upgrades",
+      "Client IT support and network connectivity assistance",
+    ],
+  },
 ];
+
+export const certificationsList = [
+  {
+    id: "aws-saa",
+    name: "AWS Certified Solutions Architect – Associate",
+    issuer: "Amazon Web Services (AWS)",
+    code: "SAA-C03",
+    type: "Cloud Architecture",
+    badge: "AWS Certified",
+    focusAreas: [
+      "High Availability & Load Balancing",
+      "VPC Networking & Security Groups",
+      "IAM Access Controls",
+      "Compute, S3 Storage & CloudFront",
+    ],
+    verified: true,
+  },
+  {
+    id: "icfix-chip-level",
+    name: "Laptop Chip-Level Engineering Course",
+    issuer: "ICFix Services (ISO 9001:2015 Certified Academy)",
+    code: "ICFA/LAP/2278",
+    type: "Hardware & IT Systems",
+    badge: "ISO 9001:2015 Certified",
+    date: "March 4, 2025 · Chennai",
+    certificateImage: "/certificates/icfix-chip-level.jpg",
+    quote:
+      "An expert-level training program in laptop chip-level repairs, specializing in motherboard diagnostics, power issues, screen replacements, and hardware troubleshooting for all major laptop brands.",
+    focusAreas: [
+      "Motherboard Diagnostics & Power Rails",
+      "Multimeter Continuity & Voltage Testing",
+      "Screen & Component Replacements",
+      "Hardware Root-Cause & IT Support",
+    ],
+    verified: true,
+  },
+];
+
+export const education = {
+  degree: "Bachelor of Engineering – Computer Science and Engineering",
+  institution: "CSI College of Engineering",
+  university: "Anna University",
+  period: "2021 – 2025",
+};
 
 export const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
   { label: "Certifications", href: "#certifications" },
-  { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
+
+export const sectionIcon = ShieldCheck;

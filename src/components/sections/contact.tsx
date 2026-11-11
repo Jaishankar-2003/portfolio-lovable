@@ -1,132 +1,193 @@
-import { useState, type FormEvent } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  Check,
+  Copy,
+  Download,
+  Globe,
+  Mail,
+  Phone,
+} from "lucide-react";
 import { personal, socials } from "@/config/portfolio";
-import { SectionHead } from "./about";
+import { SectionHeader } from "@/components/section-header";
 
 export function Contact() {
-  const [sent, setSent] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3500);
-    (e.currentTarget as HTMLFormElement).reset();
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personal.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      window.location.href = `mailto:${personal.email}`;
+    }
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4">
-        <SectionHead eyebrow="Contact" title="Let's build something reliable" subtitle="Have an opportunity, project, or just want to chat about QA and cloud? Reach out." />
+    <section
+      id="contact"
+      tabIndex={-1}
+      className="border-t border-border py-10 sm:py-14"
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.35 }}
+          className="engineering-card relative overflow-hidden rounded-3xl p-5 sm:p-8 md:p-10"
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl"
+          />
 
-        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="glass rounded-3xl p-8">
-            <h3 className="font-display text-xl font-semibold">Get in touch</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Prefer email? I usually reply within 24 hours.
-            </p>
-            <div className="mt-6 space-y-4 text-sm">
-              <InfoRow icon={Mail} label="Email" value={personal.email} href={`mailto:${personal.email}`} />
-              <InfoRow icon={Phone} label="Phone" value={personal.phone} href={`tel:${personal.phone.replace(/\s+/g, "")}`} />
-              <InfoRow icon={MapPin} label="Location" value={personal.location} />
+          <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <SectionHeader
+                eyebrow="Contact"
+                title="Let's Build Something Reliable Together."
+                subtitle="Open to Junior DevOps, AWS Cloud Infrastructure, Cloud Operations, IT Support & Systems Engineering opportunities."
+              />
+
+              <div className="mt-6 flex flex-wrap items-center gap-2.5">
+                <a
+                  href={`mailto:${personal.email}?subject=Opportunity%20%E2%80%94%20DevOps%20%2F%20Cloud%20%2F%20IT%20Systems`}
+                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
+                >
+                  <Mail className="h-4 w-4" aria-hidden="true" />
+                  <span>Send an Email</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-border bg-background/80 px-3.5 py-2 text-sm font-medium text-foreground transition hover:border-primary/40 hover:text-primary"
+                >
+                  {copied ? (
+                    <>
+                      <Check
+                        className="h-4 w-4 text-accent"
+                        aria-hidden="true"
+                      />
+                      <span>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4" aria-hidden="true" />
+                      <span>Copy Email</span>
+                    </>
+                  )}
+                </button>
+
+                <a
+                  href={personal.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-border bg-background/80 px-3.5 py-2 text-sm font-medium text-foreground transition hover:border-primary/40 hover:text-primary"
+                >
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  <span>Resume</span>
+                </a>
+              </div>
             </div>
 
-            <div className="mt-8">
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">Social</div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {socials.map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={s.name}
-                    title={s.name}
-                    className="group relative grid h-11 w-11 place-items-center rounded-xl border border-border bg-card/60 text-muted-foreground transition hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary hover:shadow-[0_0_25px_-8px_var(--primary)]"
-                  >
-                    <s.icon className="h-4 w-4" />
-                    <span className="pointer-events-none absolute -top-8 whitespace-nowrap rounded-md bg-foreground/90 px-2 py-0.5 text-[10px] text-background opacity-0 transition group-hover:opacity-100">
-                      {s.name}
-                    </span>
-                  </a>
-                ))}
+            {/* Direct Contact Channels */}
+            <div className="space-y-2.5">
+              <a
+                href={`mailto:${personal.email}`}
+                className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background/70 p-3.5 transition hover:border-primary/40"
+              >
+                <div className="flex min-w-0 items-center gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                    <Mail className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                      Email
+                    </div>
+                    <div className="truncate text-xs font-medium text-foreground sm:text-sm">
+                      {personal.email}
+                    </div>
+                  </div>
+                </div>
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0 text-muted-foreground"
+                  aria-hidden="true"
+                />
+              </a>
+
+              <a
+                href={personal.phoneHref}
+                className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background/70 p-3.5 transition hover:border-primary/40"
+              >
+                <div className="flex min-w-0 items-center gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                    <Phone className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                      Phone
+                    </div>
+                    <div className="font-mono text-xs font-medium text-foreground sm:text-sm">
+                      {personal.phone}
+                    </div>
+                  </div>
+                </div>
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0 text-muted-foreground"
+                  aria-hidden="true"
+                />
+              </a>
+
+              <a
+                href={personal.portfolioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between gap-3 rounded-xl border border-border bg-background/70 p-3.5 transition hover:border-primary/40"
+              >
+                <div className="flex min-w-0 items-center gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                    <Globe className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                      Portfolio
+                    </div>
+                    <div className="truncate font-mono text-xs font-medium text-foreground sm:text-sm">
+                      jaishankar.vercel.app
+                    </div>
+                  </div>
+                </div>
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0 text-muted-foreground"
+                  aria-hidden="true"
+                />
+              </a>
+
+              {/* Social Profile Buttons */}
+              <div className="grid grid-cols-3 gap-2 pt-1">
+                {socials
+                  .filter((s) => s.name !== "Email")
+                  .map((s) => (
+                    <a
+                      key={s.name}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-border bg-background/70 px-2 py-1.5 text-xs font-semibold text-foreground transition hover:border-primary/40 hover:text-primary"
+                    >
+                      <s.icon className="h-3.5 w-3.5" aria-hidden="true" />
+                      <span>{s.name}</span>
+                    </a>
+                  ))}
               </div>
             </div>
           </div>
-
-          <form onSubmit={onSubmit} className="glass relative overflow-hidden rounded-3xl p-8">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Field label="Name" name="name" required placeholder="Your name" />
-              <Field label="Email" name="email" type="email" required placeholder="you@example.com" />
-              <div className="sm:col-span-2">
-                <Field label="Subject" name="subject" required placeholder="What's this about?" />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="text-xs font-medium text-muted-foreground">Message</label>
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="Tell me a little about your project…"
-                  className="mt-1 w-full resize-none rounded-xl border border-border bg-background/60 p-3 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
-                />
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl gradient-bg px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px_var(--primary)] transition hover:translate-y-[-1px] hover:shadow-[0_0_50px_-4px_var(--primary)]"
-            >
-              <Send className="h-4 w-4" /> Send message
-            </button>
-
-            <AnimatePresence>
-              {sent && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="mt-4 flex items-center gap-2 rounded-xl border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent"
-                >
-                  <Check className="h-4 w-4" /> Message sent — I'll be in touch soon.
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </form>
-        </div>
+        </motion.div>
       </div>
     </section>
-  );
-}
-
-function InfoRow({
-  icon: Icon, label, value, href,
-}: { icon: typeof Mail; label: string; value: string; href?: string }) {
-  const content = (
-    <>
-      <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary">
-        <Icon className="h-4 w-4" />
-      </div>
-      <div>
-        <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{label}</div>
-        <div className="font-medium">{value}</div>
-      </div>
-    </>
-  );
-  return href ? (
-    <a href={href} className="flex items-center gap-3 rounded-xl p-2 -mx-2 transition hover:bg-muted/60">{content}</a>
-  ) : (
-    <div className="flex items-center gap-3 p-2 -mx-2">{content}</div>
-  );
-}
-
-function Field({ label, ...rest }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <div>
-      <label className="text-xs font-medium text-muted-foreground">{label}</label>
-      <input
-        {...rest}
-        className="mt-1 w-full rounded-xl border border-border bg-background/60 px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/60 focus:ring-2 focus:ring-primary/30"
-      />
-    </div>
   );
 }

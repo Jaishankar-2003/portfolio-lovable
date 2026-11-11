@@ -1,147 +1,118 @@
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { CheckCircle2, Cloud, Cpu, Network, TestTube2, Wrench } from "lucide-react";
-import { stats } from "@/config/portfolio";
-
-const traits = [
-  { icon: TestTube2, label: "QA Automation Engineer" },
-  { icon: Cloud, label: "AWS Certified" },
-  { icon: Cpu, label: "Hardware Engineer" },
-  { icon: Network, label: "Networking Background" },
-  { icon: Cloud, label: "Cloud Enthusiast" },
-  { icon: Wrench, label: "DevOps Learner" },
-];
-
-function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  const mv = useMotionValue(0);
-  const spring = useSpring(mv, { stiffness: 60, damping: 20 });
-  useEffect(() => { if (inView) mv.set(value); }, [inView, value, mv]);
-  useEffect(() =>
-    spring.on("change", (v) => {
-      if (ref.current) ref.current.textContent = Math.floor(v).toString() + suffix;
-    }),
-  [spring, suffix]);
-  return <span ref={ref}>0{suffix}</span>;
-}
+import { motion } from "framer-motion";
+import { Cpu, ShieldCheck } from "lucide-react";
+import { aboutContent, personal } from "@/config/portfolio";
+import { SectionHeader } from "@/components/section-header";
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4">
-        <SectionHead eyebrow="About" title="A little bit about me" />
+    <section
+      id="about"
+      tabIndex={-1}
+      className="border-t border-border py-10 sm:py-14"
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeader
+          eyebrow="About Me"
+          title="Reliability-first mindset from silicon to cloud infrastructure"
+          subtitle="Combining certified laptop chip-level diagnostics, 1+ year of production SDET automation, and AWS DevOps engineering."
+        />
 
-        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr]">
+        <div className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.15fr] lg:items-start sm:mt-8">
+          {/* Narrative Card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass relative overflow-hidden rounded-3xl p-8"
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.35 }}
+            className="engineering-card rounded-2xl p-5 sm:p-7"
           >
-            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-primary/30 blur-3xl" />
-            <div className="flex items-center gap-4">
-              <div className="grid h-16 w-16 place-items-center rounded-2xl gradient-bg font-display text-2xl font-bold text-white shadow-[0_0_30px_-6px_var(--primary)]">
-                SJ
-              </div>
-              <div>
-                <h3 className="font-display text-xl font-semibold">Sri Jaya Shankaran R</h3>
-                <p className="text-sm text-muted-foreground">QA · Cloud · DevOps</p>
-              </div>
-            </div>
-
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              I work across three complementary domains — QA automation, cloud
-              engineering, and hardware / infrastructure. That mix lets me build
-              reliable end-to-end pipelines and reason about systems from the
-              silicon to the deployment target.
-            </p>
-
-            <div className="mt-6 grid grid-cols-2 gap-2">
-              {traits.map((t) => (
-                <div key={t.label} className="flex items-center gap-2 rounded-xl border border-border/60 bg-card/40 px-3 py-2 text-xs">
-                  <t.icon className="h-4 w-4 text-primary" />
-                  <span>{t.label}</span>
+            <div className="flex items-center justify-between border-b border-border pb-4">
+              <div className="flex items-center gap-3">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-primary/30 bg-primary/10 font-mono text-sm font-bold text-primary">
+                  {personal.initials}
                 </div>
+                <div>
+                  <h3 className="font-display text-base font-semibold text-foreground">
+                    {personal.name}
+                  </h3>
+                  <p className="font-mono text-xs text-muted-foreground">
+                    {personal.role} · {personal.location}
+                  </p>
+                </div>
+              </div>
+
+              <span className="hidden items-center gap-1 rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 font-mono text-[10px] text-primary sm:inline-flex">
+                <Cpu className="h-3 w-3" aria-hidden="true" />
+                Hardware Passion
+              </span>
+            </div>
+
+            <div className="mt-5 space-y-3.5 text-sm leading-relaxed text-muted-foreground">
+              {aboutContent.paragraphs.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
               ))}
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {["QA", "Cloud", "Infrastructure"].map((d) => (
-                <span key={d} className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                  {d}
-                </span>
-              ))}
-              <span className="rounded-full bg-accent/15 px-3 py-1 text-xs font-medium text-accent">3+ Domains</span>
+            <div className="mt-5 flex flex-wrap gap-2 border-t border-border pt-4 text-xs">
+              <span className="inline-flex items-center gap-1 rounded-md border border-border bg-background px-2.5 py-1 text-foreground">
+                <ShieldCheck
+                  className="h-3.5 w-3.5 text-accent"
+                  aria-hidden="true"
+                />
+                Root-Cause Investigation
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-md border border-border bg-background px-2.5 py-1 text-foreground">
+                <Cpu className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                Component-Level Diagnostics
+              </span>
             </div>
           </motion.div>
 
-          <div className="grid gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="glass rounded-3xl p-8"
-            >
-              <h3 className="font-display text-2xl font-semibold">
-                Building at the intersection of <span className="gradient-text">quality, cloud & scale</span>
+          {/* Visual Engineering Journey */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.35, delay: 0.06 }}
+            className="engineering-card rounded-2xl p-5 sm:p-7"
+          >
+            <div className="flex items-center justify-between border-b border-border pb-3.5">
+              <h3 className="font-display text-base font-semibold text-foreground">
+                Engineering Journey
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                I'm a QA Automation Engineer and AWS Certified Solutions Architect
-                who cares about reliability, developer experience, and shipping
-                software that behaves correctly under load. Before software I
-                spent years repairing hardware at the chip level and running a
-                small computer service business — that background shapes how I
-                think about systems today.
-              </p>
-              <ul className="mt-5 grid gap-2 text-sm">
-                {[
-                  "Design end-to-end test automation frameworks (Playwright, Selenium, REST).",
-                  "Ship cloud infrastructure on AWS with IaC and CI/CD.",
-                  "Bridge dev, QA and ops — from Git commit to Kubernetes pod.",
-                ].map((l) => (
-                  <li key={l} className="flex gap-2 text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                    {l}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {stats.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="glass rounded-2xl p-5 text-center"
-                >
-                  <div className="font-display text-3xl font-bold gradient-text">
-                    <Counter value={s.value} suffix={s.suffix} />
-                  </div>
-                  <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
-                </motion.div>
-              ))}
+              <span className="font-mono text-xs text-muted-foreground">
+                Hardware → SDET → Cloud
+              </span>
             </div>
-          </div>
+
+            <ol className="relative mt-5 space-y-4 before:absolute before:bottom-3 before:left-[15px] before:top-3 before:w-px before:bg-border">
+              {aboutContent.journey.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.step} className="relative flex gap-3.5 pl-1">
+                    <span className="relative z-10 grid h-7 w-7 shrink-0 place-items-center rounded-lg border border-border bg-background text-primary">
+                      <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                    <div className="min-w-0 pt-0.5">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[11px] text-primary">
+                          {item.step}
+                        </span>
+                        <h4 className="font-display text-xs font-semibold text-foreground sm:text-sm">
+                          {item.title}
+                        </h4>
+                      </div>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                        {item.detail}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
-}
-
-export function SectionHead({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
-  return (
-    <div className="mx-auto max-w-3xl text-center">
-      <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
-        <span className="h-1 w-1 rounded-full bg-primary" /> {eyebrow}
-      </div>
-      <h2 className="mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl">
-        <span className="gradient-text">{title}</span>
-      </h2>
-      {subtitle && <p className="mt-3 text-muted-foreground">{subtitle}</p>}
-    </div>
   );
 }
