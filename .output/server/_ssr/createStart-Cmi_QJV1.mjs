@@ -1,22 +1,18 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/createStart-Dt05N14y.js
+import { Ft as isPromise } from "../_libs/@tanstack/react-router+[...].mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/createStart-Cmi_QJV1.js
 var createMiddleware = (options, __opts) => {
 	const resolvedOptions = {
 		type: "request",
 		...__opts || options
-	};
-	const setValidator = (validator) => {
-		return createMiddleware({}, Object.assign(resolvedOptions, {
-			validator,
-			inputValidator: validator
-		}));
 	};
 	return {
 		options: resolvedOptions,
 		middleware: (middleware) => {
 			return createMiddleware({}, Object.assign(resolvedOptions, { middleware }));
 		},
-		validator: setValidator,
-		inputValidator: setValidator,
+		validator: (validator) => {
+			return createMiddleware({}, Object.assign(resolvedOptions, { validator }));
+		},
 		client: (client) => {
 			return createMiddleware({}, Object.assign(resolvedOptions, { client }));
 		},
@@ -34,16 +30,19 @@ function dedupeSerializationAdapters(deduped, serializationAdapters) {
 		}
 	}
 }
+function dedupeOptions(options) {
+	if (options.serializationAdapters) {
+		const deduped = /* @__PURE__ */ new Set();
+		dedupeSerializationAdapters(deduped, options.serializationAdapters);
+		options.serializationAdapters = Array.from(deduped);
+	}
+	return options;
+}
 var createStart = (getOptions) => {
 	return {
-		getOptions: async () => {
-			const options = await getOptions();
-			if (options.serializationAdapters) {
-				const deduped = /* @__PURE__ */ new Set();
-				dedupeSerializationAdapters(deduped, options.serializationAdapters);
-				options.serializationAdapters = Array.from(deduped);
-			}
-			return options;
+		getOptions: () => {
+			const options = getOptions();
+			return isPromise(options) ? Promise.resolve(options).then(dedupeOptions) : dedupeOptions(options);
 		},
 		createMiddleware
 	};

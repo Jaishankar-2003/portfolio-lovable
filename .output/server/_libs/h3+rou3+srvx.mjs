@@ -408,4 +408,4 @@ var H3Core = class {
 	}
 };
 //#endregion
-export { FastResponse as a, toRequest as i, HTTPError as n, FastURL as o, defineLazyEventHandler as r, NullProtoObj as s, H3Core as t };
+export { FastResponse as a, toRequest as i, HTTPError as n, defineLazyEventHandler as r, H3Core as t };

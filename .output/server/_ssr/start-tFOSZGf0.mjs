@@ -1,6 +1,6 @@
-import { n as createStart, t as createMiddleware } from "./createStart-Dt05N14y.mjs";
+import { n as createStart, t as createMiddleware } from "./createStart-Cmi_QJV1.mjs";
 import { t as renderErrorPage } from "./ssr.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/start-Ok9K6Nid.js
+//#region node_modules/.nitro/vite/services/ssr/assets/start-tFOSZGf0.js
 var errorMiddleware = createMiddleware().server(async ({ next }) => {
 	try {
 		return await next();
